@@ -1,0 +1,9 @@
+'use strict';
+
+/**
+ * aircraft router
+ */
+
+const { createCoreRouter } = require('@strapi/strapi').factories;
+
+module.exports = createCoreRouter('api::aircraft.aircraft');
