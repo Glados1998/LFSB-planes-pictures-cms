@@ -4,7 +4,8 @@
   "info": {
     "singularName": "aircraft",
     "pluralName": "aircrafts",
-    "displayName": "aircraft"
+    "displayName": "aircraft",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,23 +13,38 @@
   "pluginOptions": {},
   "attributes": {
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
-    },
-    "yearoOfConstruction": {
-      "type": "date",
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "yearOfFirstFlight": {
       "type": "date",
       "required": true
     },
     "serviceNumber": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
+    },
+    "type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::aircarft-type.aircarft-type",
+      "inversedBy": "aircraft"
+    },
+    "operator": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::operator.operator",
+      "inversedBy": "aircraft"
+    },
+    "yearOfConstruction": {
+      "type": "integer",
+      "required": true,
+      "max": 4,
+      "min": 4
     }
   }
 }

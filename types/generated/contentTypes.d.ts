@@ -362,39 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiAircraftAircraft extends Schema.CollectionType {
-  collectionName: 'aircrafts';
-  info: {
-    singularName: 'aircraft';
-    pluralName: 'aircrafts';
-    displayName: 'aircraft';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    image: Attribute.Media & Attribute.Required;
-    yearoOfConstruction: Attribute.Date & Attribute.Required;
-    yearOfFirstFlight: Attribute.Date & Attribute.Required;
-    serviceNumber: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::aircraft.aircraft',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::aircraft.aircraft',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -710,6 +677,163 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAircarftTypeAircarftType extends Schema.CollectionType {
+  collectionName: 'aircarft_types';
+  info: {
+    singularName: 'aircarft-type';
+    pluralName: 'aircarft-types';
+    displayName: 'Aircarft type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    label: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'label'>;
+    aircraft: Attribute.Relation<
+      'api::aircarft-type.aircarft-type',
+      'oneToMany',
+      'api::aircraft.aircraft'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::aircarft-type.aircarft-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::aircarft-type.aircarft-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::aircarft-type.aircarft-type',
+      'oneToMany',
+      'api::aircarft-type.aircarft-type'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiAircraftAircraft extends Schema.CollectionType {
+  collectionName: 'aircrafts';
+  info: {
+    singularName: 'aircraft';
+    pluralName: 'aircrafts';
+    displayName: 'aircraft';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media & Attribute.Required;
+    yearOfFirstFlight: Attribute.Date & Attribute.Required;
+    serviceNumber: Attribute.Integer & Attribute.Required;
+    type: Attribute.Relation<
+      'api::aircraft.aircraft',
+      'manyToOne',
+      'api::aircarft-type.aircarft-type'
+    >;
+    operator: Attribute.Relation<
+      'api::aircraft.aircraft',
+      'manyToOne',
+      'api::operator.operator'
+    >;
+    yearOfConstruction: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 4;
+        max: 4;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::aircraft.aircraft',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::aircraft.aircraft',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOperatorOperator extends Schema.CollectionType {
+  collectionName: 'operators';
+  info: {
+    singularName: 'operator';
+    pluralName: 'operators';
+    displayName: 'operator';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    label: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    aircraft: Attribute.Relation<
+      'api::operator.operator',
+      'oneToMany',
+      'api::aircraft.aircraft'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::operator.operator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::operator.operator',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::operator.operator',
+      'oneToMany',
+      'api::operator.operator'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -720,13 +844,15 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::aircraft.aircraft': ApiAircraftAircraft;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::aircarft-type.aircarft-type': ApiAircarftTypeAircarftType;
+      'api::aircraft.aircraft': ApiAircraftAircraft;
+      'api::operator.operator': ApiOperatorOperator;
     }
   }
 }
