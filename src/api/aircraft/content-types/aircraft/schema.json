@@ -45,6 +45,11 @@
       "required": true,
       "max": "9999",
       "default": "2000"
+    },
+    "registration": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }

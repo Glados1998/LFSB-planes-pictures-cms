@@ -762,6 +762,7 @@ export interface ApiAircraftAircraft extends Schema.CollectionType {
         max: '9999';
       }> &
       Attribute.DefaultTo<'2000'>;
+    registration: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
