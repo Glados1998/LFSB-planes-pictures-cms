@@ -744,7 +744,7 @@ export interface ApiAircraftAircraft extends Schema.CollectionType {
   };
   attributes: {
     image: Attribute.Media & Attribute.Required;
-    yearOfFirstFlight: Attribute.Date & Attribute.Required;
+    yearOfFirstFlight: Attribute.Date;
     serviceNumber: Attribute.BigInteger;
     type: Attribute.Relation<
       'api::aircraft.aircraft',
