@@ -26,7 +26,7 @@
     },
     "serviceNumber": {
       "type": "biginteger",
-      "required": true
+      "required": false
     },
     "type": {
       "type": "relation",
@@ -48,8 +48,8 @@
     },
     "registration": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": false,
+      "unique": false
     }
   }
 }

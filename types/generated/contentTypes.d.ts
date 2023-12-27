@@ -683,6 +683,7 @@ export interface ApiAircarftTypeAircarftType extends Schema.CollectionType {
     singularName: 'aircarft-type';
     pluralName: 'aircarft-types';
     displayName: 'Aircarft type';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -700,8 +701,7 @@ export interface ApiAircarftTypeAircarftType extends Schema.CollectionType {
         i18n: {
           localized: true;
         };
-      }> &
-      Attribute.DefaultTo<'label'>;
+      }>;
     aircraft: Attribute.Relation<
       'api::aircarft-type.aircarft-type',
       'oneToMany',
@@ -745,7 +745,7 @@ export interface ApiAircraftAircraft extends Schema.CollectionType {
   attributes: {
     image: Attribute.Media & Attribute.Required;
     yearOfFirstFlight: Attribute.Date & Attribute.Required;
-    serviceNumber: Attribute.BigInteger & Attribute.Required;
+    serviceNumber: Attribute.BigInteger;
     type: Attribute.Relation<
       'api::aircraft.aircraft',
       'manyToOne',
@@ -762,7 +762,7 @@ export interface ApiAircraftAircraft extends Schema.CollectionType {
         max: '9999';
       }> &
       Attribute.DefaultTo<'2000'>;
-    registration: Attribute.String & Attribute.Required & Attribute.Unique;
+    registration: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

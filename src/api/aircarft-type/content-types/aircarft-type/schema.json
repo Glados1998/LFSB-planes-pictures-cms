@@ -4,7 +4,8 @@
   "info": {
     "singularName": "aircarft-type",
     "pluralName": "aircarft-types",
-    "displayName": "Aircarft type"
+    "displayName": "Aircarft type",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,8 +24,7 @@
       },
       "type": "string",
       "required": true,
-      "unique": true,
-      "default": "label"
+      "unique": true
     },
     "aircraft": {
       "type": "relation",
