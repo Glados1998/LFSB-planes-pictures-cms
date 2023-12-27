@@ -24,10 +24,6 @@
       "type": "date",
       "required": false
     },
-    "serviceNumber": {
-      "type": "biginteger",
-      "required": false
-    },
     "type": {
       "type": "relation",
       "relation": "manyToOne",
@@ -50,6 +46,10 @@
       "type": "string",
       "required": false,
       "unique": false,
+      "regex": "^[a-zA-Z0-9-]+$"
+    },
+    "serviceNumber": {
+      "type": "string",
       "regex": "^[a-zA-Z0-9-]+$"
     }
   }

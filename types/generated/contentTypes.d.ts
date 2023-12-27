@@ -745,7 +745,6 @@ export interface ApiAircraftAircraft extends Schema.CollectionType {
   attributes: {
     image: Attribute.Media & Attribute.Required;
     yearOfFirstFlight: Attribute.Date;
-    serviceNumber: Attribute.BigInteger;
     type: Attribute.Relation<
       'api::aircraft.aircraft',
       'manyToOne',
@@ -763,6 +762,7 @@ export interface ApiAircraftAircraft extends Schema.CollectionType {
       }> &
       Attribute.DefaultTo<'2000'>;
     registration: Attribute.String;
+    serviceNumber: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
