@@ -743,7 +743,7 @@ export interface ApiAircraftAircraft extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    image: Attribute.Media & Attribute.Required;
+    image: Attribute.Media;
     yearOfFirstFlight: Attribute.Date;
     type: Attribute.Relation<
       'api::aircraft.aircraft',
