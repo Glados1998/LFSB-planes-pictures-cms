@@ -763,6 +763,7 @@ export interface ApiAircraftAircraft extends Schema.CollectionType {
       Attribute.DefaultTo<'2000'>;
     registration: Attribute.String;
     serviceNumber: Attribute.String;
+    DateOfPictureShoot: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

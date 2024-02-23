@@ -51,6 +51,10 @@
     "serviceNumber": {
       "type": "string",
       "regex": "^[a-zA-Z0-9-]+$"
+    },
+    "DateOfPictureShoot": {
+      "required": false,
+      "type": "date"
     }
   }
 }
