@@ -836,6 +836,36 @@ export interface ApiOperatorOperator extends Schema.CollectionType {
   };
 }
 
+export interface ApiVisitorCounterVisitorCounter extends Schema.SingleType {
+  collectionName: 'visitor_counters';
+  info: {
+    singularName: 'visitor-counter';
+    pluralName: 'visitor-counters';
+    displayName: 'visitor-counter';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    number: Attribute.BigInteger & Attribute.DefaultTo<'0'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::visitor-counter.visitor-counter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::visitor-counter.visitor-counter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -855,6 +885,7 @@ declare module '@strapi/types' {
       'api::aircarft-type.aircarft-type': ApiAircarftTypeAircarftType;
       'api::aircraft.aircraft': ApiAircraftAircraft;
       'api::operator.operator': ApiOperatorOperator;
+      'api::visitor-counter.visitor-counter': ApiVisitorCounterVisitorCounter;
     }
   }
 }
