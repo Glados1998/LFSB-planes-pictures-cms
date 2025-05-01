@@ -1,9 +1,22 @@
 'use strict';
 
-/**
- * visitor-counter router
- */
-
-const { createCoreRouter } = require('@strapi/strapi').factories;
-
-module.exports = createCoreRouter('api::visitor-counter.visitor-counter');
+module.exports = {
+  routes: [
+    {
+      method: 'GET',
+      path: '/visitor-counter',
+      handler: 'visitor-counter.find',
+      config: {
+        auth: false,
+      },
+    },
+    {
+      method: 'POST',
+      path: '/visitor-counter/increment',
+      handler: 'visitor-counter.increment',
+      config: {
+        auth: false,
+      },
+    },
+  ],
+};
