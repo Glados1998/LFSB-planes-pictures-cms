@@ -9,12 +9,18 @@ module.exports = createCoreController('api::visitor-counter.visitor-counter', ({
   },
 
   async increment(ctx) {
-    const current = await strapi.entityService.findOne('api::visitor-counter.visitor-counter');
+    let current = await strapi.entityService.findOne('api::visitor-counter.visitor-counter');
 
-    const updated = await strapi.entityService.update('api::visitor-counter.visitor-counter', current.id, {
-      data: { count: current.count + 1 },
-    });
+    if (!current) {
+      current = await strapi.entityService.create('api::visitor-counter.visitor-counter', {
+        data: { count: 1 },
+      });
+    } else {
+      current = await strapi.entityService.update('api::visitor-counter.visitor-counter', current.id, {
+        data: { count: current.count + 1 },
+      });
+    }
 
-    return this.transformResponse(updated);
-  },
+    return this.transformResponse(current);
+  }
 }));
