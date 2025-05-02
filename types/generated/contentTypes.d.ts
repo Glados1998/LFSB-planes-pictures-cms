@@ -842,12 +842,13 @@ export interface ApiVisitorCounterVisitorCounter extends Schema.SingleType {
     singularName: 'visitor-counter';
     pluralName: 'visitor-counters';
     displayName: 'visitor-counter';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    number: Attribute.BigInteger & Attribute.DefaultTo<'0'>;
+    count: Attribute.BigInteger & Attribute.DefaultTo<'0'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
