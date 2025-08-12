@@ -46,11 +46,11 @@
       "type": "string",
       "required": false,
       "unique": false,
-      "regex": "^[a-zA-Z0-9-]+$"
+      "regex": "^(?=.{2,32}$)[A-Z0-9](?:[A-Z0-9]+|[+\\-\\/\\.\\(\\)\\s][A-Z0-9]+)*$"
     },
     "serviceNumber": {
       "type": "string",
-      "regex": "^[a-zA-Z0-9-]+$"
+      "regex": "^(?=.{2,32}$)[A-Z0-9](?:[A-Z0-9]+|[+\\-\\/\\.\\(\\)\\s][A-Z0-9]+)*$"
     },
     "DateOfPictureShoot": {
       "required": false,
