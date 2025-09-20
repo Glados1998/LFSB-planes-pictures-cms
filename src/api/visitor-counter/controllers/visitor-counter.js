@@ -4,15 +4,19 @@ const {createCoreController} = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::visitor-counter.visitor-counter', ({strapi}) => ({
   async find(ctx) {
-    const entity = await strapi.entityService.findOne('api::visitor-counter.visitor-counter', 1);
+    const entity = await strapi.documents('api::visitor-counter.visitor-counter').findOne({
+      documentId: "__TODO__"
+    });
     return this.transformResponse(entity);
   },
 
   async increment(ctx) {
-    let current = await strapi.entityService.findOne('api::visitor-counter.visitor-counter', 1);
+    let current = await strapi.documents('api::visitor-counter.visitor-counter').findOne({
+      documentId: "__TODO__"
+    });
 
     if (!current) {
-      current = await strapi.entityService.create('api::visitor-counter.visitor-counter', {
+      current = await strapi.documents('api::visitor-counter.visitor-counter').create({
         data: {count: 1},
       });
     } else {
@@ -20,8 +24,9 @@ module.exports = createCoreController('api::visitor-counter.visitor-counter', ({
         ? current.count
         : parseInt(current.count, 10) || 0;
 
-      current = await strapi.entityService.update('api::visitor-counter.visitor-counter', 1, {
-        data: {count: currentCount + 1},
+      current = await strapi.documents('api::visitor-counter.visitor-counter').update({
+        documentId: "__TODO__",
+        data: {count: currentCount + 1}
       });
     }
 
