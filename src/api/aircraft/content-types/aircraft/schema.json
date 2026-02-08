@@ -20,7 +20,7 @@
         "images"
       ]
     },
-    "yearOfFirstFlight": {
+    "yearOfRegistration": {
       "type": "date",
       "required": false
     },
