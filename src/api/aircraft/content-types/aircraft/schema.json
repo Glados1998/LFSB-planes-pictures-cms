@@ -44,7 +44,7 @@
     },
     "registration": {
       "type": "string",
-      "required": false,
+      "required": true,
       "unique": false,
       "regex": "^(?=.{2,32}$)[A-Z0-9](?:[A-Z0-9]+|[+\\-\\/\\.\\(\\)\\s][A-Z0-9]+)*$"
     },
